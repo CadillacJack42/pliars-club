@@ -1,2 +1,2 @@
-# pliars-cub
+# pliars-club
 Site for distributing decks

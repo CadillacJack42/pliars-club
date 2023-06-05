@@ -4,6 +4,7 @@ import { Admin } from "./routes/Admin";
 import { OrderForm } from "./routes/OrderForm";
 import { Detail } from "./routes/Detail";
 import { Head } from "./routes/Head";
+import { Cart } from "./routes/Cart";
 import "./css/App.css";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
             <Route exact path="/order_form" element={<OrderForm />} />
             <Route exact path="/admin" element={<Admin />}></Route>
             <Route exact path="/detail/:id" element={<Detail />}></Route>
+            <Route exact path="/cart" element={<Cart />}></Route>
             <Route exact path="/" element={<Home />}></Route>
           </Route>
         </Routes>

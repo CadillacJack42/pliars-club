@@ -20,7 +20,7 @@
   "scripts": {
     "test": "jest --verbose",
     "test:watch": "npm run test -- --watch",
-    "start": "webpack serve --hot --mode development --devtool eval-source-map --open",
+    "start": "react-scripts start",
     "start:watch": "npm run start",
     "build": "webpack --devtool source-map"
   },
@@ -75,6 +75,17 @@
     "react-hot-toast": "^2.4.1",
     "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
-  
 }

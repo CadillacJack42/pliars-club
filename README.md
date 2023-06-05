@@ -1,2 +1,2 @@
 # pliars-club
-Site for distributing decks
+Site for distributing Fingerboards and Fingerboard accessories

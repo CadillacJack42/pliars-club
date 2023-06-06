@@ -20,12 +20,27 @@ export const getProducts = async () => {
     .select("*")
     .order("created_at", { ascending: false });
 
+  console.log("RESPONSE FROM PRODUCT LIST FETCH", response);
+
   return response.data;
 };
 
-export const insertProduct = async (name, type, description, image) => {
-  const response = await client
-    .from("products")
-    .insert({ name, type, description, image });
+const productImageUpload = async (media) => {
+  const response = await client.storage
+    .from("product_images")
+    .upload(`${media.name}`, media, {
+      cacheControl: "3600",
+      upsert: false,
+    });
+  return response;
+};
+
+export const insertProduct = async (data, media) => {
+  const response = await client.from("products").insert(data);
+
+  const imageUpload = await productImageUpload(media);
+
+  console.log("RESPONSE FROM PRODUCT UPLOAD", response);
+  console.log("IMAGE BUCKET RESPONSE FROM INSERT", imageUpload);
   return response.data;
 };

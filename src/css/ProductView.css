@@ -1,0 +1,23 @@
+.product-view-card-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 3px 3px 15px 1px  rgb(165, 209, 248);
+    width: 25%;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 250px;
+}
+
+.product-view-card-image {
+    max-width: 90%;
+    height: 50%;
+}
+
+.product-view-p {
+    margin: 1px;
+}

@@ -1,9 +1,22 @@
 import { useForm } from "react-hook-form";
 import "../css/AdminCreateForm.css";
+import { insertProduct } from "../utils/fetch-utils";
 
 export const AdminCreateProductForm = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    insertProduct(
+      {
+        name: data.name,
+        description: data.description,
+        price: data.price,
+        type: data.type,
+        image: `https://bpzimtowiyikargwuats.supabase.in/storage/v1/object/public/product_images/${data.image[0].name}`,
+      },
+      data.image[0]
+    );
+  };
   return (
     <div className="admin-create-form-container">
       <form className="admin-create-form" onSubmit={handleSubmit(onSubmit)}>

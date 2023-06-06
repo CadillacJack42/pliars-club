@@ -12,6 +12,9 @@
     overflow: hidden;
     height: 250px;
 }
+.product-view-card-container:hover {
+    cursor: pointer;
+}
 
 .product-view-card-image {
     max-width: 90%;

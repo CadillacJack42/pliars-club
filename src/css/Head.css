@@ -15,6 +15,10 @@
     width: 90%;
 }
 
+.site-logo:hover {
+    cursor: pointer;
+}
+
 .checkout-cart-logo {
     width: 50%;
 }

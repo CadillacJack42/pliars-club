@@ -19,9 +19,17 @@ export const getProducts = async () => {
     .from("products")
     .select("*")
     .order("created_at", { ascending: false });
+  return response.data;
+};
 
-  console.log("RESPONSE FROM PRODUCT LIST FETCH", response);
-
+export const getProductById = async (id) => {
+  console.log("ID IN FETCH FOR BY ID", id);
+  const response = await client
+    .from("products")
+    .select("*")
+    .match({ id })
+    .single();
+  console.log("FETCH BY ID RESPONSE", response);
   return response.data;
 };
 
@@ -40,7 +48,7 @@ export const insertProduct = async (data, media) => {
 
   const imageUpload = await productImageUpload(media);
 
-  console.log("RESPONSE FROM PRODUCT UPLOAD", response);
+  console.log("RESPONSE FROM PRODUCT INSERT", response);
   console.log("IMAGE BUCKET RESPONSE FROM INSERT", imageUpload);
   return response.data;
 };

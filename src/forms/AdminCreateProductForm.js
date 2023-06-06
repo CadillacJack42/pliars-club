@@ -24,14 +24,18 @@ export const AdminCreateProductForm = () => {
           <label className="create-input-label" htmlFor="name">
             Name of Product
           </label>
-          <input id="name" {...register("name")} />
+          <input name="name" id="name" {...register("name")} />
         </span>
 
         <span className="create-input-label-span">
           <label className="create-input-label" htmlFor="description">
             Description of Product
           </label>
-          <input id="description" {...register("description")} />
+          <input
+            name="description"
+            id="description"
+            {...register("description")}
+          />
         </span>
 
         <span className="create-input-label-span">
@@ -40,6 +44,7 @@ export const AdminCreateProductForm = () => {
           </label>
           <input
             id="price"
+            name="price"
             type="number"
             min={"0"}
             step={".01"}
@@ -51,14 +56,14 @@ export const AdminCreateProductForm = () => {
           <label className="create-input-label" htmlFor="image">
             Select Image to Display
           </label>
-          <input id="image" type="file" {...register("image")} />
+          <input name="image" id="image" type="file" {...register("image")} />
         </span>
 
         <span className="create-input-label-span">
           <label className="create-input-label" htmlFor="type">
             Type of Product
           </label>
-          <select id="type" {...register("type")}>
+          <select name="type" id="type" {...register("type")}>
             <option value="deck">Complete Deck</option>
             <option value="park">Complete Park</option>
             <option value="accessories">Deck Accessories</option>

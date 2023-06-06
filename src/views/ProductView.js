@@ -1,8 +1,15 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import "../css/ProductView.css";
 
 export const ProductView = ({ product }) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/detail/${product.id}`);
+    console.log("YOU WANT TO SEE THE DETAIL PAGE FOR ", product.name);
+  };
   return (
-    <div className="product-view-card-container">
+    <div className="product-view-card-container" onClick={() => handleClick()}>
       <img
         className="product-view-card-image product-view-p"
         src={product.image}
@@ -14,6 +21,12 @@ export const ProductView = ({ product }) => {
       <p className="product-view-card-price product-view-p">
         Price : ${product.price}
       </p>
+      {location.pathname === "/admin" ? (
+        <span>
+          <button>Edit</button>
+          <button>Delete</button>
+        </span>
+      ) : null}
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../css/Home.css";
+import { ProductsList } from "../components/ProductsList";
 export const Home = () => {
   const [products, setProducts] = useState([]);
   const [filter, setFilter] = useState("all");
@@ -7,15 +8,11 @@ export const Home = () => {
   return (
     <div className="home-container">
       <h1>Finger Boards</h1>
-      <p>Display Product cards</p>
-      <p>OnClick will open product detail page</p>
-      <p>Have dropdown to filter products</p>
-      <label htmlFor="product-filter">Filter Products: </label>
+      <label htmlFor="filter-dropdown-element">Filter Products: </label>
       <select
         name="product-filter"
         id="filter-dropdown-element"
         onChange={(e) => {
-          console.log("DROP DOWN VALUE = ", e.target.value);
           setFilter(e.target.value);
         }}
       >
@@ -25,8 +22,8 @@ export const Home = () => {
         <option value={"parts"}>Fingerboard Accessories</option>
         <option value={"pieces"}>Park Pieces</option>
       </select>
+
+      <ProductsList filter={filter} />
     </div>
   );
 };
-
-// small change

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getProducts } from "../utils/fetch-utils";
 import { ProductView } from "../views/ProductView";
+import "../css/ProductsList.css";
 
-export const ProductsList = () => {
+export const ProductsList = ({ filter }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -13,8 +14,18 @@ export const ProductsList = () => {
     <div className="products-list-container">
       {products.length > 0 &&
         products.map((product) => {
-          console.log(product);
-          return <ProductView product={product} />;
+          if (
+            filter === "all" ||
+            filter === undefined ||
+            filter === product.type
+          ) {
+            return (
+              <ProductView
+                key={product.id + "-" + product.name}
+                product={product}
+              />
+            );
+          }
         })}
     </div>
   );

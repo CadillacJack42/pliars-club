@@ -6,7 +6,6 @@ export const ProductView = ({ product }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/detail/${product.id}`);
-    console.log("YOU WANT TO SEE THE DETAIL PAGE FOR ", product.name);
   };
   return (
     <div className="product-view-card-container" onClick={() => handleClick()}>

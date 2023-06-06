@@ -23,13 +23,11 @@ export const getProducts = async () => {
 };
 
 export const getProductById = async (id) => {
-  console.log("ID IN FETCH FOR BY ID", id);
   const response = await client
     .from("products")
     .select("*")
     .match({ id })
     .single();
-  console.log("FETCH BY ID RESPONSE", response);
   return response.data;
 };
 

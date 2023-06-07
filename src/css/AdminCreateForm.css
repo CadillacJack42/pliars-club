@@ -1,8 +1,12 @@
+.admin-create-form-container {
+    width: 50%;
+}
+
 .admin-create-form {
     display: flex;
     flex-direction: column;
-    width: 30%;
     margin: 10px auto;
+    width: 60%;
 }
 
 .create-input-label-span {

@@ -1,5 +1,5 @@
 .header-container {
-    height: 20%;
+    height: 14%;
     overflow: hidden;
 }
 
@@ -26,3 +26,17 @@
 .checkout-cart-logo:hover {
     cursor: pointer;
 }
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 890px) {
+    .header-site-welcome {
+      font-size: inherit;
+    }
+  }

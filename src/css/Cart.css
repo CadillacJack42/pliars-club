@@ -1,7 +1,9 @@
-/* .cart-container {
+.cart-container {
+    position: absolute;
     display: flex;
     flex-direction: row;
-} */
+    width: 100dvw;
+}
 
 .cart-item-view {
     width: 24%;
@@ -12,9 +14,22 @@
     border-radius: 15px;
     display: flex;
     flex-direction: column;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 5px;
 }
 
 .cart-items-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-list-item {
+    display: flex;
+    justify-content: flex-end;
 }

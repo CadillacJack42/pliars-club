@@ -1,0 +1,7 @@
+.admin-container {
+    position: absolute;
+    height: 85%;
+    width: 100dvw;
+    display: flex;
+    flex-direction: row;
+}

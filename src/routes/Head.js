@@ -5,7 +5,6 @@ import { useCart } from "../hooks/useCart";
 export const Head = () => {
   const navigate = useNavigate();
   const { cartCount } = useCart();
-  console.log("CART COUNT", cartCount);
 
   return (
     <div className="header-container">
@@ -15,7 +14,9 @@ export const Head = () => {
           className="site-logo"
           src="cruiser_example.jpeg"
         ></img>
-        <h1>Welcome to Matts' Finger Flippin Fingerboard Site</h1>
+        <h1 className="header-site-welcome">
+          Welcome to Matts' Finger Flippin Fingerboard Site
+        </h1>
         <span className="cart-logo-and-count-container">
           <img
             onClick={() => navigate("/cart")}
@@ -29,6 +30,11 @@ export const Head = () => {
       </header>
       <hr></hr>
       <Outlet />
+      <footer className="footer">
+        <span>created by: CadillacJack</span>
+
+        <button onClick={() => navigate("/admin")}>Admin</button>
+      </footer>
     </div>
   );
 };

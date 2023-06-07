@@ -17,8 +17,6 @@ export const Cart = () => {
 
   return (
     <div className="cart-container">
-      <h1>Cart</h1>
-      <p>Display contents of cart with prices and checkout button</p>
       <span className="cart-items-container">
         {cart.length > 0 &&
           cart.map((item, i) => {
@@ -36,11 +34,26 @@ export const Cart = () => {
           })}
       </span>
 
-      <p>Checkout will be handled by stripe</p>
       <aside className="cart-bill-display">
+        <span>
+          {cart.map((item, i) => {
+            return (
+              <p
+                key={`list-item-${i}`}
+                className="cart-list-item"
+              >{`${item.name}  ${item.price}`}</p>
+            );
+          })}
+        </span>
+
         <p>Total: ${totalPrice > 0 ? `${totalPrice.toFixed(2)}` : "0.00"}</p>
+        <button onClick={() => clearCart()}>Clear Cart</button>
+        <button
+          onClick={() => console.log("STRIPE IMPLEMENTATION COMING SOON")}
+        >
+          Checkout
+        </button>
       </aside>
-      <button onClick={() => clearCart()}>Clear Cart</button>
     </div>
   );
 };

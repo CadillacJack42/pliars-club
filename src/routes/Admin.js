@@ -1,14 +1,12 @@
 import { ProductsList } from "../components/ProductsList";
 import { AdminCreateProductForm } from "../forms/AdminCreateProductForm";
+import "../css/Admin.css";
 
 export const Admin = () => {
   return (
-    <div>
-      <h1>Admin Page</h1>
-      <p>Form to add or delete products</p>
+    <div className="admin-container">
       <ProductsList />
       <AdminCreateProductForm />
-      <p>This page should be password protected</p>
     </div>
   );
 };

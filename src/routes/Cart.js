@@ -4,7 +4,7 @@ import { ProductView } from "../views/ProductView";
 import "../css/Cart.css";
 
 export const Cart = () => {
-  const { cart, removeFromCart } = useCart();
+  const { cart, removeFromCart, clearCart } = useCart();
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
@@ -40,6 +40,7 @@ export const Cart = () => {
       <aside className="cart-bill-display">
         <p>Total: ${totalPrice > 0 ? `${totalPrice.toFixed(2)}` : "0.00"}</p>
       </aside>
+      <button onClick={() => clearCart()}>Clear Cart</button>
     </div>
   );
 };

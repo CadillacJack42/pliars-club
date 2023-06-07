@@ -9,12 +9,15 @@ export const CartProvider = ({ children }) => {
   const clearCart = () => setCart([]);
 
   const removeFromCart = (id) => {
-    const cartAfterRemove = cart.map((item) => {
+    console.log("ID IN CONTEXT REMOVE", id);
+    const cartAfterRemove = cart.filter((item) => {
+      console.log("ITEM IN FILTER REMOVE ITEM", item);
       if (item.id !== id) {
         return item;
       }
     });
-    setCart(cartAfterRemove);
+    console.log("CART AFTER REMOVE", cartAfterRemove);
+    cartAfterRemove.length > 0 ? setCart(cartAfterRemove) : setCart([]);
   };
 
   useEffect(() => {

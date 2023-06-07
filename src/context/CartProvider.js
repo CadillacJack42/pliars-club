@@ -3,21 +3,17 @@ import { createContext, useState, useEffect } from "react";
 export const CartContext = createContext(null);
 
 export const CartProvider = ({ children }) => {
-  // setCart acts as addToCart
   const [cart, setCart] = useState([]);
 
   const clearCart = () => setCart([]);
 
-  const removeFromCart = (id) => {
-    console.log("ID IN CONTEXT REMOVE", id);
-    const cartAfterRemove = cart.filter((item) => {
-      console.log("ITEM IN FILTER REMOVE ITEM", item);
-      if (item.id !== id) {
-        return item;
-      }
-    });
-    console.log("CART AFTER REMOVE", cartAfterRemove);
-    cartAfterRemove.length > 0 ? setCart(cartAfterRemove) : setCart([]);
+  const addToCart = (newItem) => {
+    setCart([...cart, newItem]);
+  };
+
+  const removeFromCart = (i) => {
+    cart.splice(i, 1);
+    cart.length > 0 ? setCart([...cart]) : setCart([]);
   };
 
   useEffect(() => {
@@ -25,7 +21,14 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, setCart, clearCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        clearCart,
+        addToCart,
+        removeFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

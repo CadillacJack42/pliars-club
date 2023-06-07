@@ -5,14 +5,14 @@ import "../css/ProductView.css";
 export const ProductView = ({ product }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { cart, setCart } = useCart();
+  const { cart, addToCart, setCart } = useCart();
   const detailPage = new RegExp("^/detail/[0-9]*$");
   const showControls = detailPage.test(location.pathname);
   const handleClick = () => {
     navigate(`/detail/${product.id}`);
   };
   const handleAddCartItem = () => {
-    setCart([...cart, product]);
+    addToCart(product);
   };
   return (
     <div className="product-view-card-container" onClick={() => handleClick()}>

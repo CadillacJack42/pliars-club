@@ -11,17 +11,8 @@ export const Cart = () => {
     setTotalPrice(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
   }, [cart]);
 
-  useEffect(() => {
-    console.log("TYPE OF TOTALPRICE IS : ", typeof totalPrice);
-    console.log(totalPrice.toFixed(2));
-  }, [totalPrice]);
-
-  const handleRemoveCartItem = (item) => {
-    console.log(
-      "You have attempted to remove an item from the cart!! Please don't do that",
-      item
-    );
-    removeFromCart(item.id);
+  const handleRemoveCartItem = (i) => {
+    removeFromCart(i);
   };
 
   return (
@@ -37,7 +28,7 @@ export const Cart = () => {
                 className="cart-item-view"
               >
                 <ProductView product={item} />
-                <button onClick={() => handleRemoveCartItem(item)}>
+                <button onClick={() => handleRemoveCartItem(i)}>
                   Remove From Cart
                 </button>
               </span>

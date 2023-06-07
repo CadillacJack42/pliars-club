@@ -16,6 +16,8 @@ export const CartProvider = ({ children }) => {
     cart.length > 0 ? setCart([...cart]) : setCart([]);
   };
 
+  const cartCount = cart?.length;
+
   useEffect(() => {
     console.log("ITEMS IN CART", cart);
   }, [cart]);
@@ -27,6 +29,7 @@ export const CartProvider = ({ children }) => {
         clearCart,
         addToCart,
         removeFromCart,
+        cartCount,
       }}
     >
       {children}

@@ -1,11 +1,11 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import "../css/Head.css";
+import { useCart } from "../hooks/useCart";
 
 export const Head = () => {
   const navigate = useNavigate();
-  const viewCart = () => {
-    console.log("You Want To View The Cart? You Can't Handle The Cart!");
-  };
+  const { cartCount } = useCart();
+  console.log("CART COUNT", cartCount);
 
   return (
     <div className="header-container">
@@ -13,14 +13,19 @@ export const Head = () => {
         <img
           onClick={() => navigate("/")}
           className="site-logo"
-          src="./cruiser_example.jpeg"
+          src="cruiser_example.jpeg"
         ></img>
         <h1>Welcome to Matts' Finger Flippin Fingerboard Site</h1>
-        <img
-          onClick={() => navigate("/cart")}
-          className="checkout-cart-logo"
-          src="./cart-icon.png"
-        ></img>
+        <span className="cart-logo-and-count-container">
+          <img
+            onClick={() => navigate("/cart")}
+            className="checkout-cart-logo"
+            src="cart-icon.png"
+          ></img>
+          {cartCount > 0 && (
+            <span className="cart-length-indicator">{cartCount}</span>
+          )}
+        </span>
       </header>
       <hr></hr>
       <Outlet />

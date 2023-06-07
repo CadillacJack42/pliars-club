@@ -19,7 +19,7 @@ export const Home = () => {
         <option value={"all"}>All Products</option>
         <option value={"deck"}>Complete Decks</option>
         <option value={"park"}>Complete Parks</option>
-        <option value={"parts"}>Fingerboard Accessories</option>
+        <option value={"accessories"}>Fingerboard Accessories</option>
         <option value={"pieces"}>Park Pieces</option>
       </select>
 

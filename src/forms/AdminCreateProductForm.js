@@ -15,11 +15,15 @@ export const AdminCreateProductForm = () => {
         image: `https://bpzimtowiyikargwuats.supabase.in/storage/v1/object/public/product_images/${data.image[0].name}`,
       },
       data.image[0]
-    );
+    ).then(() => document.getElementById("create-product-form").reset());
   };
   return (
     <div className="admin-create-form-container">
-      <form className="admin-create-form" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id="create-product-form"
+        className="admin-create-form"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <span className="create-input-label-span">
           <label className="create-input-label" htmlFor="name">
             Name of Product

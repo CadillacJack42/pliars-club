@@ -1,6 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import "../css/Head.css";
-import "../css/Head.css";
 
 export const Head = () => {
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ export const Head = () => {
         <img
           onClick={() => navigate("/cart")}
           className="checkout-cart-logo"
-          src="../assets/cart-icon.png"
+          src="./cart-icon.png"
         ></img>
       </header>
       <hr></hr>

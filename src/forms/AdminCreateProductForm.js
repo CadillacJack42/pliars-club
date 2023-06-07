@@ -1,9 +1,11 @@
 import { useForm } from "react-hook-form";
 import "../css/AdminCreateForm.css";
 import { insertProduct } from "../utils/fetch-utils";
+import { useProductList } from "../hooks/useProductList";
 
 export const AdminCreateProductForm = () => {
   const { register, handleSubmit } = useForm();
+  const { populateList } = useProductList();
   const onSubmit = (data) => {
     console.log(data);
     insertProduct(
@@ -15,7 +17,9 @@ export const AdminCreateProductForm = () => {
         image: `https://bpzimtowiyikargwuats.supabase.in/storage/v1/object/public/product_images/${data.image[0].name}`,
       },
       data.image[0]
-    ).then(() => document.getElementById("create-product-form").reset());
+    )
+      .then(() => document.getElementById("create-product-form").reset())
+      .then(() => populateList());
   };
   return (
     <div className="admin-create-form-container">

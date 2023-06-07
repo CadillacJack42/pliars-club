@@ -2,13 +2,9 @@ import { useEffect, useState } from "react";
 import { getProducts } from "../utils/fetch-utils";
 import { ProductView } from "../views/ProductView";
 import "../css/ProductsList.css";
-
+import { useProductList } from "../hooks/useProductList";
 export const ProductsList = ({ filter }) => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    getProducts().then((res) => setProducts(res));
-  }, []);
+  const { products } = useProductList();
 
   return (
     <div className="products-list-container">

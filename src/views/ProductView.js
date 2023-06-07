@@ -1,18 +1,26 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
 import "../css/ProductView.css";
+import { deleteProductById } from "../utils/fetch-utils";
+import { useProductList } from "../hooks/useProductList";
 
-export const ProductView = ({ product }) => {
+export const ProductView = ({ product, refresh }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { cart, addToCart, setCart } = useCart();
+  const { populateList } = useProductList();
+  const { addToCart } = useCart();
   const detailPage = new RegExp("^/detail/[0-9]*$");
-  const showControls = detailPage.test(location.pathname);
+  const isDetailPage = detailPage.test(location.pathname);
+  const isAdminPage = location.pathname === "/admin" ? true : false;
   const handleClick = () => {
-    navigate(`/detail/${product.id}`);
+    !isDetailPage && !isAdminPage && navigate(`/detail/${product.id}`);
   };
   const handleAddCartItem = () => {
     addToCart(product);
+  };
+  const handleAdminItemDelete = () => {
+    deleteProductById(product.id).then(() => populateList());
+    // refresh();
   };
   return (
     <div className="product-view-card-container" onClick={() => handleClick()}>
@@ -27,13 +35,13 @@ export const ProductView = ({ product }) => {
       <p className="product-view-card-price product-view-p">
         Price : ${product.price}
       </p>
-      {location.pathname === "/admin" && (
+      {isAdminPage && (
         <span>
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={() => handleAdminItemDelete()}>Delete</button>
         </span>
       )}
-      {showControls && (
+      {isDetailPage && (
         <button onClick={(e) => handleAddCartItem()}>Add to Cart</button>
       )}
     </div>

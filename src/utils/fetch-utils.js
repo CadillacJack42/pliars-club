@@ -36,7 +36,7 @@ const productImageUpload = async (media) => {
     .from("product_images")
     .upload(`${media.name}`, media, {
       cacheControl: "3600",
-      upsert: false,
+      upsert: true,
     });
   return response;
 };
@@ -49,4 +49,9 @@ export const insertProduct = async (data, media) => {
   console.log("RESPONSE FROM PRODUCT INSERT", response);
   console.log("IMAGE BUCKET RESPONSE FROM INSERT", imageUpload);
   return response.data;
+};
+
+export const deleteProductById = async (id) => {
+  const response = await client.from("products").delete().match({ id });
+  console.log("RESPONSE FROM DELETE PRODUCT", response);
 };

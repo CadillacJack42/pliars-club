@@ -18,9 +18,9 @@ export const Head = () => {
         ></img>
         <h1>Welcome to Matts' Finger Flippin Fingerboard Site</h1>
         <img
-          onClick={() => viewCart()}
+          onClick={() => navigate("/cart")}
           className="checkout-cart-logo"
-          src="./cart-icon.png"
+          src="../assets/cart-icon.png"
         ></img>
       </header>
       <hr></hr>

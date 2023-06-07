@@ -1,0 +1,16 @@
+/* .cart-container {
+    display: flex;
+    flex-direction: row;
+} */
+
+.cart-bill-display {
+    border: 1px solid black;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-items-container {
+    display: flex;
+    flex-direction: row;
+}

@@ -5,10 +5,30 @@ export const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
+  useEffect(() => {
+    console.log("CART HAS CHANGED", cart);
+  }, [cart]);
+
   const clearCart = () => setCart([]);
 
   const addToCart = (newItem) => {
-    setCart([...cart, newItem]);
+    if (cart.length === 0) {
+      newItem.quantity = 1;
+      setCart([newItem]);
+    }
+
+    const idArray = cart.map((item) => item.id);
+    console.log(idArray);
+
+    if (!idArray.includes(newItem.id)) {
+      console.log("ADDING WITH QUANTITY 1");
+      newItem.quantity = 1;
+      setCart([...cart, newItem]);
+    } else {
+      cart[idArray.indexOf(newItem.id)].quantity++;
+      console.log("QUANTITY OF ", newItem, "SHOULD HAVE INCREMENTED", cart);
+      setCart([...cart]);
+    }
   };
 
   const removeFromCart = (i) => {

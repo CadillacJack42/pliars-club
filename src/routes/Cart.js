@@ -8,7 +8,9 @@ export const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    setTotalPrice(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
+    setTotalPrice(
+      cart.reduce((acc, curr) => acc + Number(curr.price * curr.quantity), 0)
+    );
   }, [cart]);
 
   const handleRemoveCartItem = (i) => {

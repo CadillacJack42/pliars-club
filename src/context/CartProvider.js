@@ -5,10 +5,6 @@ export const CartContext = createContext(null);
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  useEffect(() => {
-    console.log("CART HAS CHANGED", cart);
-  }, [cart]);
-
   const clearCart = () => setCart([]);
 
   const addToCart = (newItem) => {
@@ -21,12 +17,10 @@ export const CartProvider = ({ children }) => {
     console.log(idArray);
 
     if (!idArray.includes(newItem.id)) {
-      console.log("ADDING WITH QUANTITY 1");
       newItem.quantity = 1;
       setCart([...cart, newItem]);
     } else {
       cart[idArray.indexOf(newItem.id)].quantity++;
-      console.log("QUANTITY OF ", newItem, "SHOULD HAVE INCREMENTED", cart);
       setCart([...cart]);
     }
   };
@@ -38,17 +32,15 @@ export const CartProvider = ({ children }) => {
       }
 
       if (item.quantity !== 0) {
-        console.log("ITEMS QUANTITY IS GREATER THAN ZERO");
         return item;
       }
     });
-    const check = updatedCart.filter((item) => {
+    const filteredCart = updatedCart.filter((item) => {
       if (item !== undefined) {
         return item;
       }
     });
-    console.log("UPDATED CART", check);
-    setCart([...check]);
+    setCart([...filteredCart]);
   };
 
   const removeFromCart = (i) => {
@@ -60,13 +52,8 @@ export const CartProvider = ({ children }) => {
     const count = cart.reduce((acc, curr) => {
       return acc + curr.quantity;
     }, 0);
-    console.log("COUNT FROM CONTEXT REDUCER OF QUANTS", count);
     return count;
   };
-
-  useEffect(() => {
-    console.log("ITEMS IN CART", cart);
-  }, [cart]);
 
   return (
     <CartContext.Provider

@@ -36,7 +36,13 @@ export const CartProvider = ({ children }) => {
     cart.length > 0 ? setCart([...cart]) : setCart([]);
   };
 
-  const cartCount = cart?.length;
+  const cartCount = () => {
+    const count = cart.reduce((acc, curr) => {
+      return acc + curr.quantity;
+    }, 0);
+    console.log("COUNT FROM CONTEXT REDUCER OF QUANTS", count);
+    return count;
+  };
 
   useEffect(() => {
     console.log("ITEMS IN CART", cart);

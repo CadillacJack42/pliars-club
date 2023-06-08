@@ -5,6 +5,7 @@ import { useCart } from "../hooks/useCart";
 export const Head = () => {
   const navigate = useNavigate();
   const { cartCount } = useCart();
+  const count = cartCount();
 
   return (
     <div className="header-container">
@@ -23,9 +24,7 @@ export const Head = () => {
             className="checkout-cart-logo"
             src="cart-icon.png"
           ></img>
-          {cartCount > 0 && (
-            <span className="cart-length-indicator">{cartCount}</span>
-          )}
+          {count > 0 && <span className="cart-length-indicator">{count}</span>}
         </span>
       </header>
       <hr></hr>

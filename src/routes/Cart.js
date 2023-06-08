@@ -1,6 +1,7 @@
+import { CartBillDisplay } from "../components/CartBillDisplay";
+import { ProductView } from "../views/ProductView";
 import { useEffect, useState } from "react";
 import { useCart } from "../hooks/useCart";
-import { ProductView } from "../views/ProductView";
 import "../css/Cart.css";
 
 export const Cart = () => {
@@ -37,16 +38,7 @@ export const Cart = () => {
       </span>
 
       <aside className="cart-bill-display">
-        <span>
-          {cart.map((item, i) => {
-            return (
-              <p
-                key={`list-item-${i}`}
-                className="cart-list-item"
-              >{`${item.name}  ${item.price}`}</p>
-            );
-          })}
-        </span>
+        <CartBillDisplay />
 
         <p>Total: ${totalPrice > 0 ? `${totalPrice.toFixed(2)}` : "0.00"}</p>
         <button onClick={() => clearCart()}>Clear Cart</button>

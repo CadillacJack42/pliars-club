@@ -31,6 +31,26 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const decrementCartItem = (itemToDecrement) => {
+    const updatedCart = cart.map((item) => {
+      if (itemToDecrement.id === item.id) {
+        item.quantity--;
+      }
+
+      if (item.quantity !== 0) {
+        console.log("ITEMS QUANTITY IS GREATER THAN ZERO");
+        return item;
+      }
+    });
+    const check = updatedCart.filter((item) => {
+      if (item !== undefined) {
+        return item;
+      }
+    });
+    console.log("UPDATED CART", check);
+    setCart([...check]);
+  };
+
   const removeFromCart = (i) => {
     cart.splice(i, 1);
     cart.length > 0 ? setCart([...cart]) : setCart([]);
@@ -56,6 +76,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         cartCount,
+        decrementCartItem,
       }}
     >
       {children}

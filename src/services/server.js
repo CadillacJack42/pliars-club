@@ -17,19 +17,29 @@ app.use(
 );
 
 const calculateOrderAmount = (items) => {
+  console.log("ITEMS IN CALCULATE ORDER", items);
   // Replace this constant with a calculation of the order's amount
   // Calculate the order total on the server to prevent
   // people from directly manipulating the amount on the client
-  return 1400;
+  const totalCart = items.reduce(
+    (acc, curr) => acc + Number(curr.price * curr.quantity),
+    0
+  );
+  const stripeCost = (totalCart + 0.3) / (1 - 0.029);
+  // const stripeManualCardCharge = stripeCost + stripeCost * 0.005;
+  console.log("STRIPES CUT", stripeCost);
+  // const totalWithStripeCut =
+  //   (totalCart + stripeManualCardCharge.toFixed(2)) * 100;
+  return stripeCost.toFixed(2) * 100;
 };
 
 app.post("/create-payment-intent", async (req, res) => {
-  console.log("MADE IT TO THE SERVER");
-  const { items } = req.body;
+  console.log("MADE IT TO THE SERVER HERES HOW TO REQ DAT BODY", req.body);
+  const { cart } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
+    amount: calculateOrderAmount(cart),
     currency: "usd",
     automatic_payment_methods: {
       enabled: true,

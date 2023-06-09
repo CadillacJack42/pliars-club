@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 
 export const CartContext = createContext(null);
 
@@ -14,7 +14,7 @@ export const CartProvider = ({ children }) => {
     }
 
     const idArray = cart.map((item) => item.id);
-    console.log(idArray);
+    // console.log(idArray);
 
     if (!idArray.includes(newItem.id)) {
       newItem.quantity = 1;

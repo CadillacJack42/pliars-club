@@ -6,7 +6,8 @@ import { Detail } from "./routes/Detail";
 import { Head } from "./routes/Head";
 import { Cart } from "./routes/Cart";
 import "./css/App.css";
-
+import { Checkout } from "./components/Checkout";
+import { PaymentSucces } from "./routes/PaymentSuccess";
 export default function App() {
   return (
     <div className="whole-app-container">
@@ -17,6 +18,8 @@ export default function App() {
             <Route exact path="/admin" element={<Admin />}></Route>
             <Route exact path="/detail/:id" element={<Detail />}></Route>
             <Route exact path="/cart" element={<Cart />}></Route>
+            <Route exact path="/checkout" element={<Checkout />}></Route>
+            <Route exact path="/success" element={<PaymentSucces />}></Route>
             <Route exact path="/" element={<Home />}></Route>
           </Route>
         </Routes>

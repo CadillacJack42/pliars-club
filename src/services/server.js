@@ -5,8 +5,16 @@ const stripe = require("stripe")(
   "sk_test_51NGqg7LXUFfNg8Sm2wv2Btt8ebyYFTtGgPURTQibPO6SCTkbepuomZ3gmZSYHMuI4XLggbX9gE2qshYY5F0F35zS00oRSbfwyN"
 );
 
+console.log("RESPONSE FROM STRIPE SERVER", app);
+
 app.use(express.static("public"));
 app.use(express.json());
+app.use(
+  require("cors")({
+    origin: ["http://localhost:3000"],
+    credentials: true,
+  })
+);
 
 const calculateOrderAmount = (items) => {
   // Replace this constant with a calculation of the order's amount
@@ -16,6 +24,7 @@ const calculateOrderAmount = (items) => {
 };
 
 app.post("/create-payment-intent", async (req, res) => {
+  console.log("MADE IT TO THE SERVER");
   const { items } = req.body;
 
   // Create a PaymentIntent with the order amount and currency
@@ -26,6 +35,7 @@ app.post("/create-payment-intent", async (req, res) => {
       enabled: true,
     },
   });
+  console.log("PAYMENT INTENT", paymentIntent);
 
   res.send({
     clientSecret: paymentIntent.client_secret,

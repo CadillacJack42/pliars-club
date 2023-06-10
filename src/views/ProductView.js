@@ -20,11 +20,11 @@ export const ProductView = ({ product, refresh }) => {
   };
   const handleAdminItemDelete = () => {
     deleteProductById(product.id).then(() => populateList());
-    // refresh();
   };
   return (
-    <div className="product-view-card-container" onClick={() => handleClick()}>
+    <div className="product-view-card-container">
       <img
+        onClick={() => handleClick()}
         className="product-view-card-image product-view-p"
         src={product.image}
       ></img>
@@ -41,7 +41,7 @@ export const ProductView = ({ product, refresh }) => {
           <button onClick={() => handleAdminItemDelete()}>Delete</button>
         </span>
       )}
-      {isDetailPage && (
+      {!isAdminPage && (
         <button onClick={(e) => handleAddCartItem()}>Add to Cart</button>
       )}
     </div>

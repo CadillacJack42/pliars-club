@@ -13,7 +13,7 @@ export const Head = () => {
         <img
           onClick={() => navigate("/")}
           className="site-logo"
-          src="cruiser_example.jpeg"
+          src="plairs-club.jpg"
         ></img>
         <h1 className="header-site-welcome">
           Welcome to Matts' Finger Flippin Fingerboard Site

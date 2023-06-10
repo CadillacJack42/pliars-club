@@ -11,9 +11,6 @@ export const Detail = () => {
     getProductById(id).then((res) => setProduct(res));
   }, []);
 
-  // useEffect(() => {
-  //   console.log("PRODUCT ON LOAD DETAIL", product);
-  // }, [product]);
   return (
     <div className="detail-page-container">
       <h1>Detail Page</h1>

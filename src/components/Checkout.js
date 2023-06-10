@@ -13,8 +13,6 @@ const stripePromise = loadStripe(
   "pk_test_51NGqg7LXUFfNg8SmKkLBbGgOHA2w78hBKPNG4FKs4cHqZf7E8GVksCJa2eQBs4NVQinaF9FdX7c1UCZTV5cc2uHo0011MK1uNh"
 );
 
-console.log("STRIPE PROMISE IN CHECKOUT", stripePromise);
-
 export const Checkout = () => {
   const { cart } = useCart();
   const [clientSecret, setClientSecret] = useState("");

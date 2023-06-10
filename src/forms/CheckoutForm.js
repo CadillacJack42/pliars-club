@@ -14,6 +14,8 @@ export default function CheckoutForm() {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log("STRIPE IN CHECKOUT FORM", stripe);
+
   useEffect(() => {
     if (!stripe) {
       return;
@@ -23,22 +25,29 @@ export default function CheckoutForm() {
       "payment_intent_client_secret"
     );
 
+    console.log("DOES ANY OF THIS EVER FIRE??", clientSecret);
+
     if (!clientSecret) {
       return;
     }
 
     stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      console.log("WHAT IS THIS IS?", paymentIntent);
       switch (paymentIntent.status) {
         case "succeeded":
+          console.log("SUCCESS??", paymentIntent);
           setMessage("Payment succeeded!");
           break;
         case "processing":
+          console.log("PROCESSING??", paymentIntent);
           setMessage("Your payment is processing.");
           break;
         case "requires_payment_method":
+          console.log("YOU BROKE!!??", paymentIntent);
           setMessage("Your payment was not successful, please try again.");
           break;
         default:
+          console.log("SOMETHING WRONG??", paymentIntent);
           setMessage("Something went wrong.");
           break;
       }
@@ -56,15 +65,15 @@ export default function CheckoutForm() {
 
     setIsLoading(true);
 
-    const check = await stripe.confirmPayment({
-      elements,
-      confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000/success",
-      },
-    });
-
-    console.log("RESULT OF PAYMENT CONFIRM", check);
+    const check = await stripe
+      .confirmPayment({
+        elements,
+        confirmParams: {
+          // Make sure to change this to your payment completion page
+          return_url: "http://localhost:3000/success",
+        },
+      })
+      .then((data) => console.log("RESULT OF PAYMENT CONFIRM", data));
 
     // This point will only be reached if there is an immediate error when
     // confirming the payment. Otherwise, your customer will be redirected to

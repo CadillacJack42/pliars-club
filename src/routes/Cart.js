@@ -9,6 +9,7 @@ import { Checkout } from "../components/Checkout";
 export const Cart = () => {
   const { cart, removeFromCart, clearCart } = useCart();
   const [totalPrice, setTotalPrice] = useState(0);
+  const [stripeServiceFee, setStripeServiceFee] = useState(0);
 
   const navigate = useNavigate();
 
@@ -17,6 +18,10 @@ export const Cart = () => {
       cart.reduce((acc, curr) => acc + Number(curr.price * curr.quantity), 0)
     );
   }, [cart]);
+
+  useEffect(() => {
+    setStripeServiceFee((totalPrice + 0.3) / (1 - 0.029) - totalPrice);
+  }, [totalPrice]);
 
   const handleRemoveCartItem = (i) => {
     removeFromCart(i);
@@ -49,7 +54,22 @@ export const Cart = () => {
       <aside className="cart-bill-display">
         <CartBillDisplay />
 
-        <p>Total: ${totalPrice > 0 ? `${totalPrice.toFixed(2)}` : "0.00"}</p>
+        <span>
+          Stripe Service Fee: $
+          {totalPrice > 0 ? `${stripeServiceFee.toFixed(2)}` : "0.00"}
+        </span>
+        <span>
+          Subtotal: ${totalPrice > 0 ? `${totalPrice.toFixed(2)}` : "0.00"}
+        </span>
+        <span>
+          Total: $
+          {totalPrice > 0
+            ? `${(
+                Number(totalPrice.toFixed(2)) +
+                Number(stripeServiceFee.toFixed(2))
+              ).toFixed(2)}`
+            : "0.00"}
+        </span>
         <button onClick={() => clearCart()}>Clear Cart</button>
         <button onClick={() => navigate("/checkout")}>Checkout</button>
       </aside>
